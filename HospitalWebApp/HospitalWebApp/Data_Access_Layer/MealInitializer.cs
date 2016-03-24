@@ -11,11 +11,11 @@ namespace HospitalWebApp.Data_Access_Layer
 
             var mealTypes = new List<MealType>
             {
-                new MealType { type=MealType.TypeOfMeal.breakfast, },
-                new MealType { type=MealType.TypeOfMeal.secondBreakfast, },
-                new MealType { type=MealType.TypeOfMeal.supper, },
-                new MealType { type=MealType.TypeOfMeal.lunch },
-                new MealType { type=MealType.TypeOfMeal.dinner }
+                new MealType { type="breakfast" },
+                new MealType { type="secondBreakfast" },
+                new MealType { type="supper" },
+                new MealType { type="lunch" },
+                new MealType { type="dinner" }
             };
 
             mealTypes.ForEach(s => context.MealTypes.Add(s));

@@ -40,7 +40,7 @@ namespace HospitalWebApp.Controllers
         // GET: Meals/Create
         public ActionResult Create()
         {
-            ViewBag.mealTypeID = new SelectList(db.MealTypes, "ID", "ID");
+            ViewBag.mealTypeID = new SelectList(db.MealTypes, "ID", "type");
             return View();
         }
 
@@ -58,7 +58,7 @@ namespace HospitalWebApp.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.mealTypeID = new SelectList(db.MealTypes, "ID", "ID", meal.mealTypeID);
+            ViewBag.mealTypeID = new SelectList(db.MealTypes, "ID", "type", meal.mealTypeID);
             return View(meal);
         }
 
@@ -74,7 +74,7 @@ namespace HospitalWebApp.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.mealTypeID = new SelectList(db.MealTypes, "ID", "ID", meal.mealTypeID);
+            ViewBag.mealTypeID = new SelectList(db.MealTypes, "ID", "type", meal.mealTypeID);
             return View(meal);
         }
 
@@ -91,7 +91,7 @@ namespace HospitalWebApp.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.mealTypeID = new SelectList(db.MealTypes, "ID", "ID", meal.mealTypeID);
+            ViewBag.mealTypeID = new SelectList(db.MealTypes, "ID", "type", meal.mealTypeID);
             return View(meal);
         }
 

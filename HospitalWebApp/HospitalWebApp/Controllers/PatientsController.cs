@@ -11,107 +11,107 @@ using HospitalWebApp.Models;
 
 namespace HospitalWebApp.Controllers
 {
-    public class MealTypesController : Controller
+    public class PatientsController : Controller
     {
-        private MealContext db = new MealContext();
+        private HospitalContext db = new HospitalContext();
 
-        // GET: MealTypes
+        // GET: Patients
         public ActionResult Index()
         {
-            return View(db.MealTypes.ToList());
+            return View(db.Patients.ToList());
         }
 
-        // GET: MealTypes/Details/5
+        // GET: Patients/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            MealType mealType = db.MealTypes.Find(id);
-            if (mealType == null)
+            Patient patient = db.Patients.Find(id);
+            if (patient == null)
             {
                 return HttpNotFound();
             }
-            return View(mealType);
+            return View(patient);
         }
 
-        // GET: MealTypes/Create
+        // GET: Patients/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: MealTypes/Create
+        // POST: Patients/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,type")] MealType mealType)
+        public ActionResult Create([Bind(Include = "ID,firstName,lastName")] Patient patient)
         {
             if (ModelState.IsValid)
             {
-                db.MealTypes.Add(mealType);
+                db.Patients.Add(patient);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(mealType);
+            return View(patient);
         }
 
-        // GET: MealTypes/Edit/5
+        // GET: Patients/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            MealType mealType = db.MealTypes.Find(id);
-            if (mealType == null)
+            Patient patient = db.Patients.Find(id);
+            if (patient == null)
             {
                 return HttpNotFound();
             }
-            return View(mealType);
+            return View(patient);
         }
 
-        // POST: MealTypes/Edit/5
+        // POST: Patients/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,type")] MealType mealType)
+        public ActionResult Edit([Bind(Include = "ID,firstName,lastName")] Patient patient)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(mealType).State = EntityState.Modified;
+                db.Entry(patient).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(mealType);
+            return View(patient);
         }
 
-        // GET: MealTypes/Delete/5
+        // GET: Patients/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            MealType mealType = db.MealTypes.Find(id);
-            if (mealType == null)
+            Patient patient = db.Patients.Find(id);
+            if (patient == null)
             {
                 return HttpNotFound();
             }
-            return View(mealType);
+            return View(patient);
         }
 
-        // POST: MealTypes/Delete/5
+        // POST: Patients/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            MealType mealType = db.MealTypes.Find(id);
-            db.MealTypes.Remove(mealType);
+            Patient patient = db.Patients.Find(id);
+            db.Patients.Remove(patient);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

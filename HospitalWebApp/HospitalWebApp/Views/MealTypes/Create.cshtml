@@ -1,4 +1,4 @@
-﻿@model HospitalWebApp.Data_Access_Layer.MealType
+﻿@model HospitalWebApp.Models.MealType
 
 @{
     ViewBag.Title = "Create";
@@ -18,7 +18,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.type, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EnumDropDownListFor(model => model.type, htmlAttributes: new { @class = "form-control" })
+                @Html.EditorFor(model => model.type, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.type, "", new { @class = "text-danger" })
             </div>
         </div>

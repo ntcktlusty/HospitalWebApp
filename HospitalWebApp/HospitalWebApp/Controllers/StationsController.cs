@@ -11,107 +11,112 @@ using HospitalWebApp.Models;
 
 namespace HospitalWebApp.Controllers
 {
-    public class MealTypesController : Controller
+    public class StationsController : Controller
     {
-        private MealContext db = new MealContext();
+        private HospitalContext db = new HospitalContext();
 
-        // GET: MealTypes
+        // GET: Stations
         public ActionResult Index()
         {
-            return View(db.MealTypes.ToList());
+            var stations = db.Stations.Include(s => s.patient);
+            return View(stations.ToList());
         }
 
-        // GET: MealTypes/Details/5
+        // GET: Stations/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            MealType mealType = db.MealTypes.Find(id);
-            if (mealType == null)
+            Station station = db.Stations.Find(id);
+            if (station == null)
             {
                 return HttpNotFound();
             }
-            return View(mealType);
+            return View(station);
         }
 
-        // GET: MealTypes/Create
+        // GET: Stations/Create
         public ActionResult Create()
         {
+            ViewBag.patientID = new SelectList(db.Patients, "ID", "FullName");
             return View();
         }
 
-        // POST: MealTypes/Create
+        // POST: Stations/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,type")] MealType mealType)
+        public ActionResult Create([Bind(Include = "ID,number,dueTo,patientID")] Station station)
         {
             if (ModelState.IsValid)
             {
-                db.MealTypes.Add(mealType);
+                db.Stations.Add(station);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(mealType);
+            ViewBag.patientID = new SelectList(db.Patients, "ID", "FullName", station.patientID);
+            return View(station);
         }
 
-        // GET: MealTypes/Edit/5
+        // GET: Stations/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            MealType mealType = db.MealTypes.Find(id);
-            if (mealType == null)
+            Station station = db.Stations.Find(id);
+            if (station == null)
             {
                 return HttpNotFound();
             }
-            return View(mealType);
+            ViewBag.patientID = new SelectList(db.Patients, "ID", "FullName", station.patientID);
+            return View(station);
         }
 
-        // POST: MealTypes/Edit/5
+        // POST: Stations/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,type")] MealType mealType)
+        public ActionResult Edit([Bind(Include = "ID,number,dueTo,patientID")] Station station)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(mealType).State = EntityState.Modified;
+                db.Entry(station).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(mealType);
+            ViewBag.patientID = new SelectList(db.Patients, "ID", "FullName", station.patientID);
+            return View(station);
         }
 
-        // GET: MealTypes/Delete/5
+        // GET: Stations/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            MealType mealType = db.MealTypes.Find(id);
-            if (mealType == null)
+            Station station = db.Stations.Find(id);
+            if (station == null)
             {
                 return HttpNotFound();
             }
-            return View(mealType);
+            return View(station);
         }
 
-        // POST: MealTypes/Delete/5
+        // POST: Stations/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            MealType mealType = db.MealTypes.Find(id);
-            db.MealTypes.Remove(mealType);
+            Station station = db.Stations.Find(id);
+            db.Stations.Remove(station);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

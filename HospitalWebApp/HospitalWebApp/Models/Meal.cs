@@ -7,6 +7,7 @@ namespace HospitalWebApp.Models
     public class Meal
     {
         public int ID { get; set; }
+        [Display(Name = "Name")]
         public string name { get; set; }
         [Display(Name = "Avaiable to")]
         [DataType(DataType.Date)]
@@ -17,6 +18,7 @@ namespace HospitalWebApp.Models
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime validSince { get; set; }
         public int mealTypeID { get; set; }
+        [Display(Name = "Meal type")]
         public virtual MealType mealType { get; set; }
 
         public virtual ICollection<Order> orders { get; set; }

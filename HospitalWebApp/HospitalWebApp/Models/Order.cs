@@ -14,7 +14,9 @@ namespace HospitalWebApp.Models
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime orderDate { get; set; }
 
+        [Display(Name = "Patient")]
         public virtual Patient patient { get; set; }
+        [Display(Name = "Meal")]
         public virtual Meal meal { get; set; }
     }
 }

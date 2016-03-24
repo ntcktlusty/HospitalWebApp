@@ -1,4 +1,4 @@
-﻿@model HospitalWebApp.Data_Access_Layer.Meal
+﻿@model HospitalWebApp.Models.Meal
 
 @{
     ViewBag.Title = "Details";
@@ -11,11 +11,12 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.mealType.ID)
+            Meal Type
+            @*@Html.DisplayNameFor(model => model.mealType.ID)*@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.mealType.ID)
+            @Html.DisplayFor(model => model.mealType.type)
         </dd>
 
         <dt>
