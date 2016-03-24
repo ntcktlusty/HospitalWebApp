@@ -13,6 +13,7 @@ namespace HospitalWebApp.Data_Access_Layer
 
         public DbSet<Meal> Meals { get; set; }
         public DbSet<MealType> MealTypes { get; set; }
+        public DbSet<Order> Orders { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
