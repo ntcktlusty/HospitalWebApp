@@ -1,0 +1,53 @@
+﻿@model HospitalWebApp.Data_Access_Layer.MealType
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>MealType</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.type)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Meals)
+        </dt>
+        <dd>
+            <table class="table">
+                <tr>
+                    <th>Meal Name</th>
+                    <th>Valid Since</th>
+                    <th>Valid To</th>
+                </tr>
+                @foreach (var item in Model.Meals)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.validSince)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.validTo)
+                        </td>
+                    </tr>
+                }
+            </table>
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
