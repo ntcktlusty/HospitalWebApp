@@ -6,18 +6,18 @@ namespace HospitalWebApp.Models
     public class Patient
     {
         public int ID { get; set; }
-        [Display(Name = "First name")]
-        public string firstName { get; set; }
-        [Display(Name = "Last name")]
-        public string lastName { get; set; }
+        
+        public string FirstName { get; set; }
 
-        [Display(Name = "Full Name")]
-        public string FullName
-        {
-            get { return firstName + " " + lastName; }
-        }
+        public string LastName { get; set; }
 
         public virtual ICollection<Station> Stations { get; set; }
-        public virtual ICollection<Order> orders { get; set; }
+
+        public virtual ICollection<Order> Orders { get; set; }
+
+        public string FullName
+        {
+            get { return FirstName + " " + LastName; }
+        }
     }
 }

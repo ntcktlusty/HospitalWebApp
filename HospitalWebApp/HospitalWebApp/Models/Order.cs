@@ -7,16 +7,15 @@ namespace HospitalWebApp.Models
     public class Order
     {
         public int ID { get; set; }
-        public int patientID { get; set; }
-        public int mealID { get; set; }
-        [Display(Name = "Order date")]
+        
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-        public DateTime orderDate { get; set; }
+        public DateTime OrderDate { get; set; }
 
-        [Display(Name = "Patient")]
-        public virtual Patient patient { get; set; }
-        [Display(Name = "Meal")]
-        public virtual Meal meal { get; set; }
+        public int PatientID { get; set; }
+        public virtual Patient Patient { get; set; }
+
+        public int MealID { get; set; }
+        public virtual Meal Meal { get; set; }
     }
 }

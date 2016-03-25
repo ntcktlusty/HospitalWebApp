@@ -10,8 +10,7 @@ namespace HospitalWebApp.Models
     public class MealType
     {
         public int ID { get; set; }
-        [Display(Name = "Type")]
-        public string type { get; set; }
+        public string Name { get; set; }
 
         public virtual ICollection<Meal> Meals { get; set; }
     }
