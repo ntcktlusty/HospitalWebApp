@@ -11,6 +11,8 @@ using System.Web.Http.Description;
 using HospitalWebApp.Models;
 using HospitalWebApp.ApiModels;
 using AutoMapper;
+using AutoMapper.QueryableExtensions;
+using HospitalWebApp.App_Start;
 
 namespace HospitalWebApp.Controllers.Api
 {
@@ -21,8 +23,8 @@ namespace HospitalWebApp.Controllers.Api
         // GET: api/MealTypes
         public IQueryable<MealTypeApiModel> GetMealTypes()
         {
-            Mapper.CreateMap<MealType, MealTypeApiModel>();
             return db.MealTypes.Select(mealtype => new MealTypeApiModel { ID = mealtype.ID, Name = mealtype.Name });
+            //return db.MealTypes.ProjectTo<MealType, MealTypeApiModel>();
             //return db.MealTypes.Select(mealtype => new { mealtype.ID, mealtype.Name });
         }
 
@@ -35,8 +37,7 @@ namespace HospitalWebApp.Controllers.Api
             {
                 return NotFound();
             }
-
-            return Ok(mealType);
+            return Ok(AutoMapperConfig.Mapper.Map<MealType, MealTypeApiModel>(mealType));
         }
 
         // PUT: api/MealTypes/5
