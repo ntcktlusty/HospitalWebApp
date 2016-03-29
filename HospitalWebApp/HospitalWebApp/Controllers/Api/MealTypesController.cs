@@ -21,7 +21,7 @@ namespace HospitalWebApp.Controllers.Api
         // GET: api/MealTypes
         public IQueryable<MealTypeApiModel> GetMealTypes()
         {
-            Mapper.CreateMap<MealType, MealTypeApiModel>();
+            
             return db.MealTypes.Select(mealtype => new MealTypeApiModel { ID = mealtype.ID, Name = mealtype.Name });
             //return db.MealTypes.Select(mealtype => new { mealtype.ID, mealtype.Name });
         }
@@ -36,7 +36,7 @@ namespace HospitalWebApp.Controllers.Api
                 return NotFound();
             }
 
-            return Ok(mealType);
+            return Ok(Global.mapper.Map<ViewModels.MealTypeView>(mealType));
         }
 
         // PUT: api/MealTypes/5

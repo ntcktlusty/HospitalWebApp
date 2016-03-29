@@ -7,9 +7,6 @@ namespace HospitalWebApp.Models
     public class Order
     {
         public int ID { get; set; }
-        
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime OrderDate { get; set; }
 
         public int PatientID { get; set; }
