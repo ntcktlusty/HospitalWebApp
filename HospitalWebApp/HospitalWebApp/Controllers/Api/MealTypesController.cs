@@ -9,6 +9,8 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using HospitalWebApp.Models;
+using HospitalWebApp.ApiModels;
+using AutoMapper;
 
 namespace HospitalWebApp.Controllers.Api
 {
@@ -17,9 +19,11 @@ namespace HospitalWebApp.Controllers.Api
         private HospitalContext db = new HospitalContext();
 
         // GET: api/MealTypes
-        public IQueryable<dynamic> GetMealTypes()
+        public IQueryable<MealTypeApiModel> GetMealTypes()
         {
-            return db.MealTypes.Select(mealtype => new { mealtype.ID, mealtype.Name });
+            Mapper.CreateMap<MealType, MealTypeApiModel>();
+            return db.MealTypes.Select(mealtype => new MealTypeApiModel { ID = mealtype.ID, Name = mealtype.Name });
+            //return db.MealTypes.Select(mealtype => new { mealtype.ID, mealtype.Name });
         }
 
         // GET: api/MealTypes/5
