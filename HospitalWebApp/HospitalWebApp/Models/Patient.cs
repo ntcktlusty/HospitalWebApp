@@ -14,10 +14,5 @@ namespace HospitalWebApp.Models
         public virtual ICollection<Station> Stations { get; set; }
 
         public virtual ICollection<Order> Orders { get; set; }
-
-        public string FullName
-        {
-            get { return FirstName + " " + LastName; }
-        }
     }
 }

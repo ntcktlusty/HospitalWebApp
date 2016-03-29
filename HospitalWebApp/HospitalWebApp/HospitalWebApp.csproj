@@ -177,6 +177,11 @@
     <Compile Include="Models\Patient.cs" />
     <Compile Include="Models\Station.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\MealView.cs" />
+    <Compile Include="ViewModels\MealTypeView.cs" />
+    <Compile Include="ViewModels\OrderView.cs" />
+    <Compile Include="ViewModels\PatientView.cs" />
+    <Compile Include="ViewModels\StationView.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -206,7 +211,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="ViewModels\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201603281413340_Initial.resx">

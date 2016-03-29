@@ -9,6 +9,7 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using HospitalWebApp.Models;
+using HospitalWebApp.ViewModels;
 
 namespace HospitalWebApp.Controllers.Api
 {
@@ -27,18 +28,21 @@ namespace HospitalWebApp.Controllers.Api
         public IHttpActionResult GetMeal(int id)
         {
             Meal meal = db.Meals.Find(id);
+
             if (meal == null)
             {
                 return NotFound();
             }
 
-            return Ok(meal);
+            return Ok(Global.mapper.Map<MealView>(meal));
         }
 
         // PUT: api/Meals/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutMeal(int id, Meal meal)
+        public IHttpActionResult PutMeal(int id, MealView mealView)
         {
+            Meal meal = Global.mapper.Map<Meal>(mealView);
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
