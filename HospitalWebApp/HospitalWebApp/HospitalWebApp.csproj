@@ -151,7 +151,11 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApiModels\MealApiModel.cs" />
     <Compile Include="ApiModels\MealTypeApiModel.cs" />
+    <Compile Include="ApiModels\OrderApiModel.cs" />
+    <Compile Include="ApiModels\PatientApiModel.cs" />
+    <Compile Include="ApiModels\StationApiModel.cs" />
     <Compile Include="App_Start\AutoMapperMvcProfile.cs" />
     <Compile Include="App_Start\AutoMapperApiProfile.cs" />
     <Compile Include="App_Start\AutoMapperConfig.cs" />
@@ -160,6 +164,8 @@
     <Compile Include="Controllers\Api\MealsController.cs" />
     <Compile Include="Controllers\Api\MealTypesController.cs" />
     <Compile Include="Controllers\Api\OrdersController.cs" />
+    <Compile Include="Controllers\Api\PatientsController.cs" />
+    <Compile Include="Controllers\Api\StationsController.cs" />
     <Compile Include="Controllers\MealsController.cs" />
     <Compile Include="Controllers\MealTypesController.cs" />
     <Compile Include="Global.asax.cs">

@@ -13,6 +13,10 @@ namespace HospitalWebApp.App_Start
         protected override void Configure()
         {
             CreateMap<MealType, MealTypeApiModel>().ReverseMap();
+            CreateMap<Meal, MealApiModel>().ReverseMap();
+            CreateMap<Order, OrderApiModel>().ReverseMap();
+            CreateMap<Patient, PatientApiModel>().ReverseMap();
+            CreateMap<Station, StationApiModel>().ReverseMap();
         }
     }
 }

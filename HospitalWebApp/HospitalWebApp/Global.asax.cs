@@ -8,7 +8,6 @@ using System.Web.Security;
 using System.Web.SessionState;
 using System.Web.Http;
 using HospitalWebApp.App_Start;
-using AutoMapper;
 
 namespace HospitalWebApp
 {
@@ -22,8 +21,6 @@ namespace HospitalWebApp
             GlobalConfiguration.Configure(WebApiConfig.Register);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             AutoMapperConfig.RegisterMapper();
-            //AutoMapperApiConfig.RegisterMappings();
-            //AutoMapperMVCConfig.RegisterMappings();
 
             GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
             GlobalConfiguration.Configuration.Formatters.Remove(GlobalConfiguration.Configuration.Formatters.XmlFormatter);

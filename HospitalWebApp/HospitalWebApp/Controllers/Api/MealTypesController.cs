@@ -12,7 +12,7 @@ using HospitalWebApp.Models;
 using HospitalWebApp.ApiModels;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
-using HospitalWebApp.App_Start;
+
 
 namespace HospitalWebApp.Controllers.Api
 {
@@ -23,13 +23,11 @@ namespace HospitalWebApp.Controllers.Api
         // GET: api/MealTypes
         public IQueryable<MealTypeApiModel> GetMealTypes()
         {
-            return db.MealTypes.Select(mealtype => new MealTypeApiModel { ID = mealtype.ID, Name = mealtype.Name });
-            //return db.MealTypes.ProjectTo<MealType, MealTypeApiModel>();
-            //return db.MealTypes.Select(mealtype => new { mealtype.ID, mealtype.Name });
+            return db.MealTypes.ProjectTo<MealTypeApiModel>();
         }
 
         // GET: api/MealTypes/5
-        [ResponseType(typeof(MealType))]
+        [ResponseType(typeof(MealTypeApiModel))]
         public IHttpActionResult GetMealType(int id)
         {
             MealType mealType = db.MealTypes.Find(id);
@@ -37,23 +35,23 @@ namespace HospitalWebApp.Controllers.Api
             {
                 return NotFound();
             }
-            return Ok(AutoMapperConfig.Mapper.Map<MealType, MealTypeApiModel>(mealType));
+            return Ok(Mapper.Map<MealTypeApiModel>(mealType));
         }
 
         // PUT: api/MealTypes/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutMealType(int id, MealType mealType)
+        public IHttpActionResult PutMealType(int id, MealTypeApiModel mealTypeApiModel)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != mealType.ID)
+            if (id != mealTypeApiModel.ID)
             {
                 return BadRequest();
             }
-
+            MealType mealType = Mapper.Map<MealType>(mealTypeApiModel);
             db.Entry(mealType).State = EntityState.Modified;
 
             try
@@ -76,22 +74,22 @@ namespace HospitalWebApp.Controllers.Api
         }
 
         // POST: api/MealTypes
-        [ResponseType(typeof(MealType))]
-        public IHttpActionResult PostMealType(MealType mealType)
+        [ResponseType(typeof(MealTypeApiModel))]
+        public IHttpActionResult PostMealType(MealTypeApiModel mealTypeApiModel)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-
+            MealType mealType = Mapper.Map<MealType>(mealTypeApiModel);
             db.MealTypes.Add(mealType);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = mealType.ID }, mealType);
+            return CreatedAtRoute("DefaultApi", new { id = mealType.ID }, Mapper.Map<MealTypeApiModel>(mealType));
         }
 
         // DELETE: api/MealTypes/5
-        [ResponseType(typeof(MealType))]
+        [ResponseType(typeof(MealTypeApiModel))]
         public IHttpActionResult DeleteMealType(int id)
         {
             MealType mealType = db.MealTypes.Find(id);
@@ -103,7 +101,7 @@ namespace HospitalWebApp.Controllers.Api
             db.MealTypes.Remove(mealType);
             db.SaveChanges();
 
-            return Ok(mealType);
+            return Ok(Mapper.Map<MealTypeApiModel>(mealType));
         }
 
         protected override void Dispose(bool disposing)

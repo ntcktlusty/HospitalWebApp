@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using AutoMapper;
 using HospitalWebApp.Models;
-//using HospitalWebApp.ViewModels;
+using HospitalWebApp.ViewModels;
 
 namespace HospitalWebApp.App_Start
 {
@@ -12,7 +12,7 @@ namespace HospitalWebApp.App_Start
     {
         protected override void Configure()
         {
-            
+            CreateMap<MealType, MealTypeView>().ReverseMap();
         }
     }
 }

@@ -15,44 +15,44 @@ using AutoMapper.QueryableExtensions;
 
 namespace HospitalWebApp.Controllers.Api
 {
-    public class OrdersController : ApiController
+    public class StationsController : ApiController
     {
         private HospitalContext db = new HospitalContext();
 
-        // GET: api/Orders
-        public IQueryable<OrderApiModel> GetOrders()
+        // GET: api/Stations
+        public IQueryable<StationApiModel> GetStations()
         {
-            return db.Orders.ProjectTo<OrderApiModel>();
+            return db.Stations.ProjectTo<StationApiModel>();
         }
 
-        // GET: api/Orders/5
-        [ResponseType(typeof(OrderApiModel))]
-        public IHttpActionResult GetOrder(int id)
+        // GET: api/Stations/5
+        [ResponseType(typeof(StationApiModel))]
+        public IHttpActionResult GetStation(int id)
         {
-            Order order = db.Orders.Find(id);
-            if (order == null)
+            Station station = db.Stations.Find(id);
+            if (station == null)
             {
                 return NotFound();
             }
 
-            return Ok(Mapper.Map<OrderApiModel>(order));
+            return Ok(Mapper.Map<StationApiModel>(station));
         }
 
-        // PUT: api/Orders/5
+        // PUT: api/Stations/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutOrder(int id, OrderApiModel orderApiModel)
+        public IHttpActionResult PutStation(int id, StationApiModel stationApiModel)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != orderApiModel.ID)
+            if (id != stationApiModel.ID)
             {
                 return BadRequest();
             }
-            Order order = Mapper.Map<Order>(orderApiModel);
-            db.Entry(order).State = EntityState.Modified;
+            Station station = Mapper.Map<Station>(stationApiModel);
+            db.Entry(station).State = EntityState.Modified;
 
             try
             {
@@ -60,7 +60,7 @@ namespace HospitalWebApp.Controllers.Api
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!OrderExists(id))
+                if (!StationExists(id))
                 {
                     return NotFound();
                 }
@@ -73,35 +73,35 @@ namespace HospitalWebApp.Controllers.Api
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/Orders
-        [ResponseType(typeof(OrderApiModel))]
-        public IHttpActionResult PostOrder(OrderApiModel orderApiModel)
+        // POST: api/Stations
+        [ResponseType(typeof(StationApiModel))]
+        public IHttpActionResult PostStation(StationApiModel stationApiModel)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-            Order order = Mapper.Map<Order>(orderApiModel);
-            db.Orders.Add(order);
+            Station station = Mapper.Map<Station>(stationApiModel);
+            db.Stations.Add(station);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = order.ID }, Mapper.Map<OrderApiModel>(order));
+            return CreatedAtRoute("DefaultApi", new { id = station.ID }, Mapper.Map<StationApiModel>(station));
         }
 
-        // DELETE: api/Orders/5
-        [ResponseType(typeof(OrderApiModel))]
-        public IHttpActionResult DeleteOrder(int id)
+        // DELETE: api/Stations/5
+        [ResponseType(typeof(StationApiModel))]
+        public IHttpActionResult DeleteStation(int id)
         {
-            Order order = db.Orders.Find(id);
-            if (order == null)
+            Station station = db.Stations.Find(id);
+            if (station == null)
             {
                 return NotFound();
             }
 
-            db.Orders.Remove(order);
+            db.Stations.Remove(station);
             db.SaveChanges();
 
-            return Ok(Mapper.Map<OrderApiModel>(order));
+            return Ok(Mapper.Map<StationApiModel>(station));
         }
 
         protected override void Dispose(bool disposing)
@@ -113,9 +113,9 @@ namespace HospitalWebApp.Controllers.Api
             base.Dispose(disposing);
         }
 
-        private bool OrderExists(int id)
+        private bool StationExists(int id)
         {
-            return db.Orders.Count(e => e.ID == id) > 0;
+            return db.Stations.Count(e => e.ID == id) > 0;
         }
     }
 }
